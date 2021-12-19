@@ -23,3 +23,9 @@ ORDER BY name ASC;
 SELECT name, population
 FROM world
 WHERE population<(SELECT population FROM world WHERE name='Poland') AND population>(SELECT population FROM world WHERE name='Canada');
+
+-- 5. Percentages of Germany
+SELECT name, 
+CONCAT(ROUND((population*100)/(SELECT population FROM world WHERE name='Germany'),0), '%') AS percentage
+FROM world
+WHERE continent='Europe'
